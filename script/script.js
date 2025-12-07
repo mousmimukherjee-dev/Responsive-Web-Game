@@ -181,7 +181,7 @@ const gameRestart = () => {
   rollHistoryList.length = 0;
   game_end_msg.classList.add("hide");
   restart.classList.add("hide");
-  refresh.classList.add("hide");
+  
   dice.classList.remove("hide");
   roll_button.classList.remove("hide");
   turn.classList.remove('hide')
@@ -191,5 +191,25 @@ const gameRestart = () => {
   turn.textContent= 'Turn: ' + '';
 };
 
+const gameRefresh = () => {
+  roll_history.innerHTML = "";
+  rollHistoryList.length = 0;
+  game_end_msg.classList.add("hide");
+  restart.classList.add("hide");
+  refresh.classList.remove("hide");
+  dice.classList.remove("hide");
+  roll_button.classList.remove("hide");
+  turn.classList.remove('hide')
+  roll_button.disabled = false;
+  player1Score=0;
+  player2Score=0;
+  currentPlayer='';
+  click=0;
+  gameEnd=false;
+  player1_score.textContent="Player1 Score:" + 0;
+  player2_score.textContent="Player2 Score:" + 0;
+  turn.textContent= 'Turn: ' + '';
+};
+
 restart.addEventListener("click", gameRestart);
-refresh.addEventListener("click", gameRestart);
+refresh.addEventListener("click", gameRefresh);
