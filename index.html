@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tiny Toss</title>
+  <link rel="stylesheet" href="./styles/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="./script/script.js" defer></script>
+</head>
+<body>
+
+  <div id="landing">
+    <h2 id="are">Are</h2>
+    <h2 id="you">You</h2>
+    <h2 id="ready">Ready?</h2>
+    <button id="startGame" class="hide">Start</button>
+  </div>
+  
+  <audio id="bg_sound" src="./Sound/bg_soud.mp3" loop></audio>
+  <audio id="dice_sound" src="./Sound/dice-142528.mp3"></audio>
+  <audio id="click_sound" src="./Sound/click_sound.mp3"></audio>
+
+  <div id="game" class="hide" >
+  <h1>Tiny Roll 🎲</h1>
+  <div id="turn">Turn: </div>
+  <div class="score">
+    <div class="player1_score">Player1 Score:0</div>
+    <div class="player2_score">Player2 Score:0</div>
+  </div>
+  <div class="dice" id="dice">&#9856</div>
+  <button id="restart" class="hide">Restart</button>
+  <div class="game_end_msg hide">Game End!</div>
+  <button id="roll_button">Roll Dice</button>
+  <ul id="roll_history">
+    <!-- <li>Roll 1:<span>&#9856</span></li>
+    <li>Roll 2:<span>&#9857</span></li> -->
+  </ul>
+  <button id="refresh" class="hide">Refresh</button>
+  </div>
+
+
+  
+</body>
+</html>
