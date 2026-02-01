@@ -13,17 +13,17 @@ $(document).ready(function(){
   setTimeout(function(){
 
     $('#you').fadeIn(500);
-  },1000);
+  },1500);
 
   setTimeout(function(){
 
     $('#ready').fadeIn(500);
-  },2000);
+  },2500);
 
   setTimeout(function(){
 
     $('#startGame').fadeIn(500);
-  },3000);
+  },3500);
 
   $('#startGame').click(function(){
 
