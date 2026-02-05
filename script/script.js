@@ -1,44 +1,29 @@
-$(document).ready(function(){
+$(document).ready(function () {
+  $("button").click(function () {
+    $("#click_sound")[0].play();
+  });
 
-  $('#bg_sound')[0].play()
-  $('#bg_sound')[0].volume= 0.3;
+  $("#are").fadeIn(500);
 
-  $('button').click(function(){
+  setTimeout(function () {
+    $("#you").fadeIn(500);
+  }, 1500);
 
-    $('#click_sound')[0].play()
-  })
+  setTimeout(function () {
+    $("#ready").fadeIn(500);
+  }, 2500);
 
-  $('#are').fadeIn(500);
+  setTimeout(function () {
+    $("#startGame").fadeIn(500);
+  }, 3500);
 
-  setTimeout(function(){
-
-    $('#you').fadeIn(500);
-  },1500);
-
-  setTimeout(function(){
-
-    $('#ready').fadeIn(500);
-  },2500);
-
-  setTimeout(function(){
-
-    $('#startGame').fadeIn(500);
-  },3500);
-
-  $('#startGame').click(function(){
-
-    
-
-    $('#landing').fadeOut(500, function(){
-       $('#game').fadeIn(500);
-       $('#bg_sound')[0].pause();
-
+  $("#startGame").click(function () {
+    $("#landing").fadeOut(500, function () {
+      $("#game").fadeIn(500);
+      $("#bg_sound")[0].pause();
     });
-  })
-
-  
+  });
 });
-
 
 const roll_button = document.getElementById("roll_button");
 const dice = document.getElementById("dice");
@@ -46,11 +31,11 @@ const roll_history = document.getElementById("roll_history");
 const game_end_msg = document.querySelector(".game_end_msg");
 const restart = document.getElementById("restart");
 const refresh = document.getElementById("refresh");
-const turn = document.getElementById('turn');
-const score=document.querySelector('.score');
-const player1_score=document.querySelector('.player1_score');
-const player2_score=document.querySelector('.player2_score');
-const dice_sound=document.getElementById('dice_sound');
+const turn = document.getElementById("turn");
+const score = document.querySelector(".score");
+const player1_score = document.querySelector(".player1_score");
+const player2_score = document.querySelector(".player2_score");
+const dice_sound = document.getElementById("dice_sound");
 
 const getDiceFace = (rollResult) => {
   switch (rollResult) {
@@ -79,27 +64,25 @@ const updateRollHistory = () => {
     const listItem = document.createElement("li");
     listItem.classList.add("li");
     listItem.innerHTML = `Roll ${i + 1}: <span> ${getDiceFace(
-      rollHistoryList[i]
+      rollHistoryList[i],
     )}</span>`;
     roll_history.appendChild(listItem);
     roll_history.classList.add("roll_history");
   }
 };
 
-let currentDice=null;
+let currentDice = null;
 
 const rollDice = () => {
   const rollResult = Math.floor(Math.random() * 6) + 1;
-  currentDice=rollResult;
-  console.log(currentDice , typeof currentDice);
+  currentDice = rollResult;
+  console.log(currentDice, typeof currentDice);
   console.log(rollResult);
   const diceFace = getDiceFace(rollResult);
   dice.innerHTML = diceFace;
-  console.log(diceFace , typeof diceFace);
+  console.log(diceFace, typeof diceFace);
   rollHistoryList.push(rollResult);
   updateRollHistory();
-  
-  
 };
 
 let click = 0;
@@ -113,24 +96,20 @@ const gameEnd = () => {
     roll_button.classList.add("hide");
     restart.classList.remove("hide");
     refresh.classList.remove("hide");
-    click=0;
-  
+    click = 0;
   }
 };
 
-let currentPlayer='';
+let currentPlayer = "";
 
-const updateTurn=()=>{
-
+const updateTurn = () => {
   console.log(currentPlayer);
-  currentPlayer=currentPlayer==='player 1'?'player 2':'player 1';
-  turn.textContent= 'Turn: ' + currentPlayer;
+  currentPlayer = currentPlayer === "player 1" ? "player 2" : "player 1";
+  turn.textContent = "Turn: " + currentPlayer;
+};
 
-}
-
-
-let player1Score=0;
-let player2Score=0;
+let player1Score = 0;
+let player2Score = 0;
 
 const updateScore = () => {
   if (currentDice === 6 && currentPlayer === "player 1") {
@@ -142,12 +121,8 @@ const updateScore = () => {
 
     console.log(player2Score);
     player2_score.textContent = "Player2 Score:" + player2Score;
-    
   }
 };
-
-
-
 
 roll_button.addEventListener("click", () => {
   click++;
@@ -158,14 +133,13 @@ roll_button.addEventListener("click", () => {
   }, 2000);
 
   dice_sound.currentTime = 0;
-  dice_sound.play()
-  dice_sound.volume=0.3;
+  dice_sound.play();
+  dice_sound.volume = 0.3;
 
   rollDice();
   updateTurn();
   updateScore();
   gameEnd();
-  
 });
 
 const gameRestart = () => {
@@ -173,23 +147,21 @@ const gameRestart = () => {
   rollHistoryList.length = 0;
   game_end_msg.classList.add("hide");
   restart.classList.add("hide");
-  player1Score="";
-  player2Score=""; 
+  player1Score = "";
+  player2Score = "";
   dice.classList.remove("hide");
   roll_button.classList.remove("hide");
-  turn.classList.remove('hide')
+  turn.classList.remove("hide");
   roll_button.disabled = false;
-  player1_score.textContent="Player1 Score:" + 0;
-  player2_score.textContent="Player2 Score:" + 0;
-  turn.textContent= 'Turn: ' + '';
+  player1_score.textContent = "Player1 Score:" + 0;
+  player2_score.textContent = "Player2 Score:" + 0;
+  turn.textContent = "Turn: " + "";
 };
 
 const gameRefresh = () => {
-  
-  gameRestart()
+  gameRestart();
   refresh.classList.remove("hide");
-  currentPlayer='';
-  
+  currentPlayer = "";
 };
 
 restart.addEventListener("click", gameRestart);
